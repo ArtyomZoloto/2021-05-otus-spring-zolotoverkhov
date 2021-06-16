@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="validator" class="ru.otus.Validator"/>
+
+    <bean id="userInput" class="ru.otus.io.UserInput">
+        <constructor-arg name="printer" ref="printer"/>
+    </bean>
+
+    <bean id="printer" class="ru.otus.io.Printer"/>
+
+    <bean id="answerService" class="ru.otus.AnswerService">
+        <constructor-arg name="input" ref="userInput"/>
+    </bean>
+
+    <bean id="dao" class="ru.otus.dao.QuestionsDaoImpl">
+        <constructor-arg name="fileName" value="/questions.csv"/>
+    </bean>
+
+    <bean id="processor" class="ru.otus.QuestionsProcessor">
+        <constructor-arg name="printer" ref="printer"/>
+        <constructor-arg name="answerService" ref="answerService"/>
+        <constructor-arg name="dao" ref="dao"/>
+    </bean>
+
+    <bean id="userFactory" class="ru.otus.UserFactory">
+        <constructor-arg name="input" ref="userInput"/>
+        <constructor-arg name="printer" ref="printer"/>
+    </bean>
+
+    <bean id="quiz" class="ru.otus.Quiz">
+        <constructor-arg name="printer" ref="printer"/>
+        <constructor-arg name="processor" ref="processor"/>
+        <constructor-arg name="userFactory" ref="userFactory"/>
+        <constructor-arg name="validator" ref="validator"/>
+    </bean>
+
+</beans>
