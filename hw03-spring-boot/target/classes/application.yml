@@ -1,0 +1,6 @@
+server:
+  port: 8081
+quiz:
+  file-name: questions.csv
+  pass-score: 60
+  locale: en-EN
