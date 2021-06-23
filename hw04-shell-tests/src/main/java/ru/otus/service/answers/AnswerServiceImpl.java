@@ -5,10 +5,11 @@ import ru.otus.domain.Answer;
 import ru.otus.domain.Question;
 import ru.otus.io.IOService;
 import ru.otus.messages.MessageFactory;
-import static ru.otus.messages.MessagesConstants.*;
+
+import static ru.otus.messages.MessagesConstants.REPEAT_INPUT;
 
 @Service
-public class AnswerServiceImpl {
+public class AnswerServiceImpl implements AnswerService{
 
     private final IOService ioService;
     private final MessageFactory messageFactory;
@@ -19,7 +20,7 @@ public class AnswerServiceImpl {
         this.messageFactory = messageFactory;
     }
 
-    public Answer getFor(Question question) {
+    public Answer getAnswerForQuestion(Question question) {
         return new Answer(getIntWithRepeatIfMismatch(), question);
     }
 

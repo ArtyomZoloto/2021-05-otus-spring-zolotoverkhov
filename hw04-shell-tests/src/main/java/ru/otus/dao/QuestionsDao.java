@@ -5,9 +5,13 @@ import ru.otus.domain.Question;
 import java.util.List;
 
 /**
- * Return list of Questions object for quiz
+ * Data access object to read questions data
  */
 
 public interface QuestionsDao {
+
+    /**
+     * Return list of Questions object for quiz
+     */
     List<Question> getAll();
 }

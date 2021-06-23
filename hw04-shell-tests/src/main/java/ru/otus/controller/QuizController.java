@@ -4,6 +4,10 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import ru.otus.service.quiz.QuizService;
 
+/**
+ * This class allow user interaction based on commands
+ */
+
 @ShellComponent
 public class QuizController{
 

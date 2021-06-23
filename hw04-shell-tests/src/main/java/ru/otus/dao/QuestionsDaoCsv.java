@@ -7,26 +7,29 @@ import ru.otus.exceptions.QuizException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class QuestionsDaoImpl implements QuestionsDao {
+public class QuestionsDaoCsv implements QuestionsDao {
     public static final int TEXT = 0;
     public static final int ANSWER = 5;
     private final QuizConfig config;
 
-    public QuestionsDaoImpl(QuizConfig config) {
+    public QuestionsDaoCsv(QuizConfig config) {
         this.config = config;
     }
 
     public List<Question> getAll() {
         String filename = "/" + config.getLocale().getLanguage() + "-" + config.getFileName();
+        InputStream questionsInputStream = this.getClass().getResourceAsStream(filename);
+        if (questionsInputStream == null) {
+            throw new QuizException("Can't create input stream based on source file");
+        }
         List<Question> questionList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                this.getClass().getResourceAsStream(filename)
-        ))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(questionsInputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] segments = line.split(",");

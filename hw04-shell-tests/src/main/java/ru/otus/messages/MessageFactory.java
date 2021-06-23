@@ -4,6 +4,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import ru.otus.config.QuizConfig;
 
+/**
+ * Returns localized messages based on setting
+ * @see resources/application.yml -> quiz.locale value
+ */
 @Component
 public class MessageFactory {
 

@@ -13,10 +13,10 @@ import java.util.stream.Stream;
  */
 
 @Component
-public class ValidatorImpl {
+public class ValidationServiceImpl implements ValidationService{
     private final QuizConfig config;
 
-    public ValidatorImpl(QuizConfig config) {
+    public ValidationServiceImpl(QuizConfig config) {
         this.config = config;
     }
 

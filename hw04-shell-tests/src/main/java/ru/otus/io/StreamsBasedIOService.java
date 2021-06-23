@@ -7,6 +7,10 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * IOService bases on System.in and System.out streams.
+ */
+
 @Service
 public class StreamsBasedIOService implements IOService {
     private final PrintStream out;

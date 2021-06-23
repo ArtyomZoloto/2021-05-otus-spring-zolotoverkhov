@@ -1,5 +1,9 @@
 package ru.otus.domain;
 
+/**
+ * This class represend result of the Quiz
+ */
+
 public class QuizResult {
     private final boolean isPassed;
     private final int percentage;

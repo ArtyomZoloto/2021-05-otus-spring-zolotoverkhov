@@ -1,21 +1,23 @@
 package ru.otus.service.quiz;
 
-import org.springframework.stereotype.Component;
-import ru.otus.service.questions.QuestionsServiceImpl;
-import ru.otus.service.validator.ValidatorImpl;
+import org.springframework.stereotype.Service;
 import ru.otus.dao.QuestionsDao;
 import ru.otus.domain.QuizResult;
 import ru.otus.domain.User;
 import ru.otus.io.IOService;
 import ru.otus.messages.MessageFactory;
+import ru.otus.service.questions.QuestionsService;
+import ru.otus.service.validator.ValidationServiceImpl;
+
 import static ru.otus.messages.MessagesConstants.*;
 
 
-@Component
+
+@Service
 public class QuizServiceImpl implements QuizService {
-    private final QuestionsServiceImpl processor;
+    private final QuestionsService questionsService;
     private final IOService ioService;
-    private final ValidatorImpl validator;
+    private final ValidationServiceImpl validationService;
     private final MessageFactory messageFactory;
     private final QuestionsDao dao;
 
@@ -25,13 +27,13 @@ public class QuizServiceImpl implements QuizService {
 
 
     public QuizServiceImpl(IOService ioService,
-                           QuestionsServiceImpl processor,
-                           ValidatorImpl validator,
+                           QuestionsService questionsService,
+                           ValidationServiceImpl validationService,
                            MessageFactory messageFactory,
                            QuestionsDao dao) {
         this.ioService = ioService;
-        this.processor = processor;
-        this.validator = validator;
+        this.questionsService = questionsService;
+        this.validationService = validationService;
         this.messageFactory = messageFactory;
         this.dao = dao;
     }
@@ -64,7 +66,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void startQuiz() {
         if (checkLogin()) {
-            quizResult = validator.getQuizResult(processor.processQuestions(dao.getAll()));
+            quizResult = validationService.getQuizResult(questionsService.processQuestions(dao.getAll()));
             quizResult.setUser(currentUser);
         }
     }

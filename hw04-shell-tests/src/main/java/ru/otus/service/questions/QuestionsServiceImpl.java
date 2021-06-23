@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.otus.domain.Answer;
 import ru.otus.domain.Question;
 import ru.otus.io.IOService;
-import ru.otus.service.answers.AnswerServiceImpl;
+import ru.otus.service.answers.AnswerService;
 
 import java.util.List;
 
@@ -13,22 +13,22 @@ import java.util.List;
  */
 
 @Service
-public class QuestionsServiceImpl {
+public class QuestionsServiceImpl implements QuestionsService{
 
     private final IOService ioService;
-    private final AnswerServiceImpl answerServiceImpl;
+    private final AnswerService answerService;
 
     public QuestionsServiceImpl(IOService ioService,
-                                AnswerServiceImpl answerServiceImpl) {
+                                AnswerService answerService) {
         this.ioService = ioService;
-        this.answerServiceImpl = answerServiceImpl;
+        this.answerService = answerService;
     }
 
     public Answer[] processQuestions(List<Question> questions) {
         Answer[] answers = new Answer[questions.size()];
         for (int i = 0; i < questions.size(); i++) {
             ioService.print(getQuestionWithOptionsString(questions.get(i)));
-            answers[i] = answerServiceImpl.getFor(questions.get(i));
+            answers[i] = answerService.getAnswerForQuestion(questions.get(i));
         }
         return answers;
     }

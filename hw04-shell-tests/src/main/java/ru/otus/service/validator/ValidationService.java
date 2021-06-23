@@ -3,7 +3,7 @@ package ru.otus.service.validator;
 import ru.otus.domain.Answer;
 import ru.otus.domain.QuizResult;
 
-public interface Validator {
+public interface ValidationService {
 
     /**
      * Map user answers with question data and make decision, is

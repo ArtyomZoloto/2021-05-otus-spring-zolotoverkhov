@@ -1,11 +1,15 @@
 package ru.otus.service.quiz;
 
+/**
+ * Main service of Quiz app
+ */
+
 public interface QuizService {
 
     /**
      * Login the user
-     * @param name
-     * @param surname
+     * @param name user name
+     * @param surname user surname
      */
     void login(String name, String surname);
 

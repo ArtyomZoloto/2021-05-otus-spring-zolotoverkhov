@@ -11,5 +11,5 @@ public interface AnswerService {
      * @param question question, that will be stored in Answer object
      * @return complete immutable Answer
      */
-    public Answer getFor(Question question);
+    Answer getAnswerForQuestion(Question question);
 }

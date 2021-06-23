@@ -8,6 +8,5 @@ public interface MessagesConstants {
     String QUIZ_FAILED = "quiz_failed";
     String QUIZ_PASSED = "quiz_passed";
     String LOGGED_OUT = "logged_out";
-    String WELCOME = "welcome";
     String REPEAT_INPUT = "repeat_input";
 }
