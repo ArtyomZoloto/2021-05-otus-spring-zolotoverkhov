@@ -3,8 +3,6 @@ package ru.otus.messages;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import ru.otus.config.QuizConfig;
-import ru.otus.domain.QuizResult;
-import static ru.otus.messages.Messages.*;
 
 @Component
 public class MessageFactory {
