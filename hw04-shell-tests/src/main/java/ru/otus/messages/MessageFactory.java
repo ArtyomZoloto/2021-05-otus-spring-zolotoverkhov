@@ -17,26 +17,8 @@ public class MessageFactory {
         this.config = config;
     }
 
-    public String getResultMessage(QuizResult result) {
-        String score =
-                messageSource.getMessage(SCORE.name().toLowerCase(), new String[]{result.getUser().toString(),
-                                String.valueOf(result.getPercentage())},
-                        config.getLocale());
-        String passResult;
-
-        if (result.isPassed()) {
-            passResult = messageSource.getMessage(PASSED.name().toLowerCase(), null,
-                    config.getLocale());
-        } else {
-            passResult = messageSource.getMessage(FAILED.name().toLowerCase(), null,
-                    config.getLocale());
-        }
-
-        return score + System.lineSeparator() + passResult;
-    }
-
-    public String getMessage(Messages msg) {
-        return messageSource.getMessage(msg.name().toLowerCase(), null,
+    public String getLocalizedMessage(String msg, Object... args) {
+        return messageSource.getMessage(msg, args,
                 config.getLocale());
     }
 }

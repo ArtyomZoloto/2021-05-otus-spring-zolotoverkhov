@@ -27,18 +27,7 @@ public class Question {
         return options;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(text);
-        sb.append(System.lineSeparator());
-        for (int i = 1; i <= options.length; i++) {
-            sb.append(i + ". " + options[i - 1]);
-            if (i < options.length) {
-                sb.append(System.lineSeparator());
-            }
-        }
-        return sb.toString();
-    }
+
 
 }
 

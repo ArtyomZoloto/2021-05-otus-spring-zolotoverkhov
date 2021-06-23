@@ -1,4 +1,4 @@
-package ru.otus;
+package ru.otus.service.validator;
 
 import org.springframework.stereotype.Component;
 import ru.otus.config.QuizConfig;
@@ -13,22 +13,14 @@ import java.util.stream.Stream;
  */
 
 @Component
-public class Validator {
+public class ValidatorImpl {
     private final QuizConfig config;
 
-    public Validator(QuizConfig config) {
+    public ValidatorImpl(QuizConfig config) {
         this.config = config;
     }
 
-    /**
-     * Map user answers with question data and make decision, is
-     * question answer valid or not. After that return percentage
-     * of right answers.
-     *
-     * @param answers array of users answers
-     * @return percentage of right answers
-     */
-    public QuizResult validate(Answer[] answers) {
+    public QuizResult getQuizResult(Answer[] answers) {
 
         long correctAnswersCounter =
                 Stream.of(answers).filter(a -> a.getUserAnswer() == a.getQuestion().getCorrectAnswer()).count();
